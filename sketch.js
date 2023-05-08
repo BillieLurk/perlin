@@ -58,7 +58,7 @@ function draw() {
   if (true) {
     let spectrum = fft.analyze();
     let bass = fft.getEnergy("bass");
-    let lineLength = 3*map(bass, 120, 200, 1, 50); // Scale lineLength based on the bass energy
+    let lineLength = 2.3*map(bass, 120, 200, 1, 50); // Scale lineLength based on the bass energy
     
     background(0, 0, 0, 10);
     var yoff = 0;
