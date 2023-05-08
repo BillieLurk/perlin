@@ -20,26 +20,39 @@ var canvas;
 
 var audioStarted = false;
 function setup() {
-    canvas = createCanvas(window.innerWidth, window.innerHeight);
-    cols = floor(width / scl);
-    rows = floor(height / scl);
-    fr = createP("");
-  
-    mic = new p5.AudioIn();
-    mic.start();
-    amplitude = new p5.Amplitude();
-    amplitude.setInput(mic);
-    fft = new p5.FFT();
-    fft.setInput(mic);
-  
-    background(0);
-  
-    flowfield = new Array(cols * rows);
-  
-    for (var i = 0; i < 100; i++) {
-      particles[i] = new Particle();
-    }
+  canvas = createCanvas(window.innerWidth, window.innerHeight);
+  cols = floor(width / scl);
+  rows = floor(height / scl);
+  fr = select("#framerate");
+
+  mic = new p5.AudioIn();
+  amplitude = new p5.Amplitude();
+  fft = new p5.FFT();
+
+  background(0);
+
+  flowfield = new Array(cols * rows);
+
+  for (var i = 0; i < 100; i++) {
+    particles[i] = new Particle();
   }
+
+  // Add an event listener for the button click
+  let startAudioButton = select("#startAudioButton");
+  startAudioButton.mousePressed(startAudio);
+}
+
+function startAudio() {
+  // Start the audio context and hide the button
+  if (!audioStarted) {
+    audioStarted = true;
+    userStartAudio();
+    mic.start();
+    amplitude.setInput(mic);
+    fft.setInput(mic);
+    select("#startAudioButton").hide();
+  }
+}
 
 function draw() {
   if (true) {
