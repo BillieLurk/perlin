@@ -19,6 +19,15 @@ var fft;
 var canvas;
 
 var audioStarted = false;
+
+function handleResize() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+  cols = floor(width / scl);
+  rows = floor(height / scl);
+  flowfield = new Array(cols * rows);
+}
+
+
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
   cols = floor(width / scl);
@@ -40,6 +49,8 @@ function setup() {
   // Add an event listener for the button click
   let startAudioButton = select("#startAudioButton");
   startAudioButton.mousePressed(startAudio);
+
+  window.addEventListener("resize", handleResize);
 }
 
 function startAudio() {
