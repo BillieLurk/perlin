@@ -18,9 +18,29 @@
       left: 10px;
       z-index: 100;
     }
+    #logo {
+      z-index: 100;
+      width: 25%;
+    
+      mix-blend-mode: difference;
+      
+    }
+    
+    #logoContainer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
   </style>
   <body>
     <button id="startAudioButton">Start Audio</button>
-    
+    <div id="logoContainer">
+      <img id="logo" src="KH.png" />
+    </div>
   </body>
 </html>
