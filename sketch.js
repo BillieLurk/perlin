@@ -22,16 +22,16 @@ var audioStarted = false;
 
 function handleResize() {
   resizeCanvas(window.innerWidth, window.innerHeight);
-  cols = floor(width / scl);
-  rows = floor(height / scl);
+  cols = floor(width / scl)+1;
+  rows = floor(height / scl+1);
   flowfield = new Array(cols * rows);
 }
 
 
 function setup() {
   canvas = createCanvas(window.innerWidth, window.innerHeight);
-  cols = floor(width / scl);
-  rows = floor(height / scl);
+  cols = floor(width / scl)+1;
+  rows = floor(height / scl)+1;
   fr = select("#framerate");
 
   mic = new p5.AudioIn();
@@ -42,7 +42,7 @@ function setup() {
 
   flowfield = new Array(cols * rows);
 
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 500; i++) {
     particles[i] = new Particle();
   }
 
@@ -97,14 +97,14 @@ function draw() {
       yoff += inc;
       zoff += 0.0003;
     }
-
+/*
     for (var i = 0; i < particles.length; i++) {
       particles[i].follow(flowfield);
       particles[i].update();
       particles[i].edges();
       particles[i].show();
     }
-
+*/
     //fr.html(floor(frameRate()));
   }
 }
@@ -137,7 +137,8 @@ function Particle() {
   };
 
   this.show = function () {
-    stroke(0, 5);
+    
+    stroke(255, 0,0);
     strokeWeight(1);
     line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
     this.updatePrev();
